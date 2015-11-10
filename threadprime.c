@@ -1,16 +1,26 @@
+/*
+SOAL 2
+Mencari jumlah bilangan prima < N
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
 
+/*
+*untuk menginput testcase yang diinginkan
+*menghitung banyak bilangan prima sesuai testcase
+*/
 void* input()
 {
-	int input, a, b;
+	int tcase, a, b;
+	int count=0;
 
 	printf("------------MENGHITUNG BILANGAN PRIMA KURANG DARI N------------\n");
 	printf("Masukkan N: ");
-	scanf("%d", &input);
+	scanf("%d", &tcase);
 
-	for(a=2; a<input; a++)
+	for(a=2; a<tcase; a++)
 	{
 		for(b=2; b<a; b++)
 		{
@@ -18,11 +28,17 @@ void* input()
 			break;
 		}
 		if(b==a)
-		printf("%d ", b);
+		{
+			printf("%d ", b);
+			count++;
+		}
 	}
-	printf("\n");
+	printf("\nJumlah bilangan prima kurang dari %d ada %d\n", tcase, count);
 }
 
+/*
+memanggil dan menjalankan fungsi input
+*/
 int main()
 {
 	pthread_t cetak;
