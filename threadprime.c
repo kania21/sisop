@@ -1,6 +1,10 @@
 /*
+SISTEM OPERASI A
+E-11
+Kania Amalia 5114100172
+Tiara Anggita 5114100176
 SOAL 2
-Mencari jumlah bilangan prima < N
+Mencari jumlah bilangan prima kurang dari N
 */
 
 #include <stdio.h>
@@ -8,18 +12,21 @@ Mencari jumlah bilangan prima < N
 #include <pthread.h>
 
 /*
-*untuk menginput testcase yang diinginkan
-*menghitung banyak bilangan prima sesuai testcase
+Thread Function
+menghitung banyak bilangan prima kurang dari testcase
 */
-void* input()
+void* prime(void *args)
+
 {
+	//deklarasi variabel lokal
 	int tcase, a, b;
 	int count=0;
 
 	printf("------------MENGHITUNG BILANGAN PRIMA KURANG DARI N------------\n");
-	printf("Masukkan N: ");
+	printf("Masukkan N: "); //input testcase
 	scanf("%d", &tcase);
 
+	//menghitung banyak bilangan prima
 	for(a=2; a<tcase; a++)
 	{
 		for(b=2; b<a; b++)
@@ -37,12 +44,12 @@ void* input()
 }
 
 /*
-memanggil dan menjalankan fungsi input
+Main Function
 */
 int main()
 {
-	pthread_t cetak;
-	pthread_create(&cetak,NULL,input,NULL);
-	pthread_join(cetak,NULL);
+	pthread_t thread1;
+	pthread_create(&thread1,NULL,prime,NULL); //buat thread menjalankan fungsi prime
+	pthread_join(thread1,NULL);
 	return 0;
 }
